@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_selector">
+
+    <TextView
+        android:id="@+id/text_view_trailer_name"
+        tools:text="TextView"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/default_margin" />
+
+    <TextView
+        android:id="@+id/text_view_trailer_site"
+        tools:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/half_default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_trailer_name"
+        app:layout_constraintLeft_toLeftOf="@+id/text_view_trailer_name"
+        android:layout_marginRight="@dimen/zero"
+        android:layout_marginEnd="@dimen/zero"
+        app:layout_constraintRight_toRightOf="@+id/text_view_trailer_name"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <View
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/one"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_trailer_site"
+        android:layout_marginRight="@dimen/default_margin"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="@dimen/default_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:contentDescription="@string/content_description_chevron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_view_trailer_name"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_trailer_site"
+        android:layout_marginBottom="@dimen/default_margin" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="one">1dp</dimen>
+
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="half_default_margin">8dp</dimen>
+
+    <dimen name="recycler_view_main_tablet_width">225dp</dimen>
+    <dimen name="image_view_detail_tablet_backdrop_height">161dp</dimen>
+
+    <dimen name="progress_bar_size">84dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="sad_face_image_view_size">44dp</dimen>
+</resources>

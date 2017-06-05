@@ -1,0 +1,42 @@
+<resources>
+    <!--
+        Here is where you place your API key from themoviedb.org
+      -->
+    <string name="api_key"></string>
+
+    <string name="app_name">Popular Movies</string>
+    <string name="activity_movie_detail">Movie Details</string>
+    <string name="activity_reviews">Reviews</string>
+    <string name="activity_trailers">Trailers</string>
+
+    <string name="error">An Error has occurred. Please check your network and try again.</string>
+    <string name="error_no_data">There seems to be no data to display here!</string>
+
+    <string name="content_description_thumb">Thumbnail for movie</string>
+    <string name="content_description_sad_face">Error image</string>
+    <string name="content_description_chevron">Detail indicator</string>
+
+    <string name="error_load_data">Unable to load data.</string>
+    <string name="error_load_data_detail">Unable to load data: </string>
+    <string name="selected_movie">Selected Movie: </string>
+    <string name="released">Date: </string>
+    <string name="rating">Rating: </string>
+    <string name="reviewed_by">Reviewed By: </string>
+
+    <string name="spinner_popular">Popular</string>
+    <string name="spinner_top_rated">Top Rated</string>
+    <string name="spinner_favorites">Favorites</string>
+
+    <string name="title_activity_movie_detail">MovieDetailActivity</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="detail_trailers">Trailers</string>
+    <string name="detail_reviews">Reviews</string>
+
+    <string name="error_select_video">Please select a video the bar on the left, or if there isn\'t one, connect to the Internet and select the Popular or Top Rated section at the top.</string>
+    <string name="error_retrieve_data">Error retrieving data.</string>
+    <string name="error_parse_json">Error parsing JSON.</string>
+    <string name="error_no_trailers">Trailers are not available.</string>
+    <string name="error_no_reviews">Reviews are not available.</string>
+</resources>
