@@ -32,11 +32,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.nsreverse.popularmovies_part2_udacity.data.NetworkUtils.Sort;
+import net.nsreverse.popularmovies_part2_udacity.data.RuntimeCache;
 import net.nsreverse.popularmovies_part2_udacity.data.background.MoviesAsyncTask;
 import net.nsreverse.popularmovies_part2_udacity.data.background.ParseJsonTask;
 import net.nsreverse.popularmovies_part2_udacity.data.provider.FavoritesContract;
 import net.nsreverse.popularmovies_part2_udacity.model.Movie;
-import net.nsreverse.popularmovies_part2_udacity.model.Trailer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -129,15 +129,28 @@ public class MainActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     mCurrentSort = Sort.POPULAR;
+
+                    if (RuntimeCache.popularMovies != null) {
+                        taskFinishedWithArray(RuntimeCache.popularMovies);
+                    }
+                    else {
+                        refreshDataSource();
+                    }
                 }
                 else if (position == 1) {
                     mCurrentSort = Sort.TOP_RATED;
+
+                    if (RuntimeCache.topRatedMovies != null) {
+                        taskFinishedWithArray(RuntimeCache.topRatedMovies);
+                    }
+                    else {
+                        refreshDataSource();
+                    }
                 }
                 else {
                     mCurrentSort = Sort.FAVORITES;
+                    refreshDataSource();
                 }
-
-                refreshDataSource();
             }
 
             @Override
@@ -164,6 +177,7 @@ public class MainActivity extends AppCompatActivity
             mFab = (FloatingActionButton)findViewById(R.id.fab);
         }
 
+        System.out.println("Point 1");
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(INSTANCE_STATE_POPULAR_JSON_KEY)) {
                 mPopularJson = savedInstanceState.getString(INSTANCE_STATE_POPULAR_JSON_KEY);
@@ -174,27 +188,51 @@ public class MainActivity extends AppCompatActivity
             }
 
             if (savedInstanceState.containsKey(INSTANCE_STATE_SORT_CRITERIA_KEY)) {
+                System.out.println("Point 2");
                 int sortCriteria = savedInstanceState.getInt(INSTANCE_STATE_SORT_CRITERIA_KEY);
 
                 switch (sortCriteria) {
                     case SORT_CRITERIA_POPULAR_ID:
                         mCurrentSort = Sort.POPULAR;
+                        System.out.println("Point 4");
+                        if (RuntimeCache.popularMovies != null) {
+                            System.out.println("Point 5");
+                            taskFinishedWithArray(RuntimeCache.popularMovies);
+                        }
+                        else {
+                            System.out.println("Point 6");
+                            reloadDataSource();
+                        }
+
                         break;
 
                     case SORT_CRITERIA_TOP_RATED_ID:
+                        System.out.println("Point 7");
                         mCurrentSort = Sort.TOP_RATED;
+
+                        if (RuntimeCache.topRatedMovies != null) {
+                            System.out.println("Point 8");
+                            taskFinishedWithArray(RuntimeCache.topRatedMovies);
+                        }
+                        else {
+                            System.out.println("Point 9");
+                            reloadDataSource();
+                        }
+
                         break;
 
                     case SORT_CRITERIA_FAVORITES_ID:
                         mCurrentSort = Sort.FAVORITES;
+                        reloadDataSource();
                         break;
 
                     default:
+                        System.out.println("Point 10");
                         Log.e(TAG, "Sort criteria ID is invalid: " + sortCriteria);
+                        mCurrentSort = Sort.POPULAR;
+                        reloadDataSource();
                         break;
                 }
-
-                reloadDataSource();
             }
 
             if (savedInstanceState.containsKey(INSTANCE_STATE_PREVIOUS_INDEX)) {
@@ -368,6 +406,15 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public void taskFinishedWithArray(Movie[] movies) {
+        if (movies != null) {
+            if (mCurrentSort == Sort.POPULAR) {
+                RuntimeCache.popularMovies = movies;
+            }
+            else if (mCurrentSort == Sort.TOP_RATED) {
+                RuntimeCache.topRatedMovies = movies;
+            }
+        }
+
         if (mMovieAdapter == null) {
             mMovieAdapter = new MovieAdapter(this);
             mRecyclerView.setAdapter(mMovieAdapter);
